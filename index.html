@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><title>POOLROOMS</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#061a1a">
+<link rel="stylesheet" href="style.css"></head><body>
+<audio id="theme" src="main_theme.mp3" loop preload="none"></audio>
+<canvas id="c"></canvas><div id="uw"></div><div id="danger"></div><div id="vig"></div><div id="grain"></div><div id="gb"></div><div id="fade"></div>
+<div id="hud">
+ <div id="card"><div id="lvl">Rez-de-chaussée</div><div class="rl"><span>Clés</span><b id="cnt"></b></div><div id="rings"></div>
+  <div id="exit"><span id="arr">➤</span><span>Porte</span><b id="dist"></b></div></div>
+ <div id="chl" style="display:none"></div><div id="cross"></div><div id="prompt"></div><div id="msg"></div>
+</div>
+<canvas id="mm" width="236" height="236" title="Ouvrir la carte"></canvas>
+<div id="mapfs"><div class="mapwrap"><div id="maptabs" class="maptabs"><button data-l="-1">Sous-sol</button><button data-l="0" class="on">Rez-de-chaussée</button><button data-l="1">Étage 1</button><button data-l="2">Étage 2</button></div><canvas id="mmf" width="1000" height="1000"></canvas><p class="maphint">M · Échap · ou clique pour fermer</p></div></div>
+<div id="resume"><span>Clique pour jouer</span></div>
+<div id="touch"><div id="jb"><i id="jk"></i></div>
+ <button class="tb" id="tjmp" aria-label="Sauter">Saut</button><button class="tb" id="tsp" aria-label="Courir">Courir</button>
+ <button class="tb" id="tdv" aria-label="Plonger">Plonger</button><button class="tb" id="tact" aria-label="Agir">Agir</button><button class="tb sm" id="tpause" aria-label="Pause">II</button></div>
+
+<div id="menu" class="on">
+ <div class="bg"><i class="shaft s1"></i><i class="shaft s2"></i><i class="shaft s3"></i></div>
+ <div class="shell">
+  <div class="stage">
+   <section id="v-main" class="view on">
+    <p class="eyebrow">Monde n° <b id="seedn"></b></p>
+    <h1>Pool<span>rooms</span></h1>
+    <p class="sub">Un complexe aquatique sans fin. L'eau ne bouge presque pas. Quelque chose rôde.</p>
+    <nav class="list">
+     <button id="play" class="item"><span id="playt">Entrer</span><i></i></button>
+     <button class="item" data-go="v-settings"><span>Réglages</span><i></i></button>
+     <button class="item" data-go="v-world"><span>Monde</span><i></i></button>
+     <button class="item" data-go="v-help"><span>Aide</span><i></i></button>
+    </nav>
+   </section>
+   <section id="v-settings" class="view">
+    <button class="back" data-go="v-main">← Retour</button><h2>Réglages</h2>
+    <div class="row"><span>Qualité</span><div class="seg" id="sq"><button data-v="0">Basse</button><button data-v="1">Moyenne</button><button data-v="2">Haute</button><button data-v="3">Max</button></div></div>
+    <div class="row"><span>Commandes</span><div class="seg" id="sm"><button data-v="0">Clavier</button><button data-v="1">Tactile</button></div></div>
+    <div class="row"><span>Sensibilité</span><input id="sens" type="range" min=".4" max="2.4" step=".05"></div>
+    <div class="row"><span>Volume</span><input id="vol" type="range" min="0" max="1" step=".05"></div>
+    <div class="row"><span>Musique</span><input id="mus" type="range" min="0" max="1" step=".05"></div>
+    <label class="row chk"><input id="peace" type="checkbox"><span>Mode paisible (sans le monstre)</span></label>
+    <label class="row chk"><input id="cheat" type="checkbox"><span>Mode triche (provisoire) : monstre et clés visibles à travers les murs</span></label>
+    <button id="fs" class="ghost">Plein écran</button>
+   </section>
+   <section id="v-world" class="view">
+    <button class="back" data-go="v-main">← Retour</button><h2>Monde</h2>
+    <p class="note">Chaque numéro génère un complexe unique. Partage-le pour rejouer le même.</p>
+    <div class="row"><input id="seedv" inputmode="numeric" aria-label="Numéro du monde"><button id="seedgo" class="mini">Charger</button><button id="seedrnd" class="mini">Nouveau</button></div>
+   </section>
+   <section id="v-help" class="view">
+    <button class="back" data-go="v-main">← Retour</button><h2>Aide</h2>
+    <ul><li>ZQSD / WASD / flèches : marcher · Souris : regarder · Maj : courir · Espace : sauter</li>
+     <li>C : plonger dans les bassins profonds · M : carte · P : mode paisible · Échap : pause</li>
+     <li>Bassins profonds : nage jusqu'à une échelle en inox et avance contre elle pour grimper.</li>
+     <li>Toboggans : sur les galeries des atriums, place-toi devant l'entrée et saute pour glisser.</li>
+     <li>Le monstre te voit, t'entend, te cherche. Fixe-le du regard pour le faire reculer… et plus longtemps pour l'abattre.</li><li>Trouve 10 clés (sur des piliers, dans les tunnels, les salles secrètes) puis insère-les dans la grande porte de la salle de départ. E ou Agir pour interagir. M ou un clic sur la minimap ouvre la carte.</li>
+     <li>Tactile : joystick à gauche, glisse à droite pour regarder.</li></ul>
+   </section>
+  </div>
+  <p class="foot">Poolrooms · expérience liminale</p>
+ </div>
+</div>
+
+<div id="dead" class="over lose"><div class="dust"></div><div class="dbox"><p class="eyebrow">Tu as été trouvé</p><h1 class="glitchy">Fin</h1><p class="big" id="dtime">0:00</p><p class="sub" id="dsub"></p>
+ <div class="dbtn"><button id="again" class="item"><span>Réessayer</span><i></i></button><button id="dmenu" class="item"><span>Retour au menu</span><i></i></button></div></div></div>
+<div id="end" class="over win"><div class="dust"></div><div class="dbox"><p class="eyebrow">Tu as ouvert la porte</p><h1>Libéré</h1><p class="big" id="wtime">0:00</p><p class="sub">Les dix serrures ont cédé. Ce qui te poursuivait n'est plus qu'un écho au fond du vide.</p>
+ <div class="dbtn"><button id="wagain" class="item"><span>Rejouer</span><i></i></button><button id="wmenu" class="item"><span>Retour au menu</span><i></i></button></div></div></div>
+<script src="three.min.js"></script><script src="game.js"></script></body></html>
